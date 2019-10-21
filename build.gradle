@@ -1,0 +1,34 @@
+apply plugin: "java"
+
+group = "com.akm"
+version = "1.0"
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:0.9.+'
+  }
+}
+    
+allprojects {
+  repositories {
+    mavenCentral()
+  }
+}
+
+task fatJar(type: Jar) {
+  manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',  
+          'Implementation-Version': version,
+          'Main-Class': 'com.akm.Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+    
+wrapper{
+  gradleVersion = '4.4'
+}
