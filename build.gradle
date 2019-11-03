@@ -1,4 +1,5 @@
 apply plugin: "java"
+apply plugin: 'idea'
 
 group = "com.akm"
 version = "1.0"
@@ -9,7 +10,14 @@ buildscript {
   }
   dependencies {
     classpath 'com.android.tools.build:gradle:0.9.+'
+    // https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava
+
+
   }
+}
+
+dependencies{
+  compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.13'
 }
     
 allprojects {
